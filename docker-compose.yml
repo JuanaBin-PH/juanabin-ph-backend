@@ -39,7 +39,7 @@ services:
       KINDE_ISSUER: ""
       KINDE_AUDIENCE: juanabin-ph
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       # Live-reload the source without rebuilding the image.
       - ./app:/app/app

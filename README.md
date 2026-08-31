@@ -138,8 +138,8 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 
-- API docs: http://localhost:8000/docs
-- Health: http://localhost:8000/health
+- API docs: http://localhost:8001/docs
+- Health: http://localhost:8001/health
 
 ### 7. Run the tests
 
