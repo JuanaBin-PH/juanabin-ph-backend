@@ -1,4 +1,4 @@
-# JuanaBin PH — Backend API
+# JuanaBin PH — Backend
 
 Production-oriented FastAPI service for the JuanaBin PH waste management operations
 platform. Officers record waste intake events, earn reward points, and those rewards
