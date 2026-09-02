@@ -32,7 +32,7 @@
 
 ---
 
-## 🏗️ Architecture & Component Flow
+## 🏗️ System Architecture & Component Flow
 
 ```
 React frontend  (separate repo, http://localhost:5173)
