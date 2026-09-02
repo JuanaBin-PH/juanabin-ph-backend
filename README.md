@@ -1,5 +1,10 @@
 # JuanaBin PH — Backend
 
+## 🌐 Official Website & Background
+**Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
+
+JuanaBin PH has been conceptualized and actively operating to promote sustainable waste management, environmental awareness, and community empowerment. Through integrated technology, JuanaBin incentivizes proper disposal and eco-friendly habits anchored on the Stellar blockchain network.
+
 Production-oriented FastAPI service for the JuanaBin PH waste management operations
 platform. Officers record waste intake events, earn reward points, and those rewards
 are anchored to Stellar transactions on the **Horizon Testnet**.
