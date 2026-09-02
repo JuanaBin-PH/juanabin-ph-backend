@@ -35,33 +35,71 @@
 
 ---
 
-## 🌿 About JuanaBin PH
+## 🧩 Why JuanaBin PH
 
-**JuanaBin PH** is an IoT-enabled, AI-powered smart waste segregation system built specifically for Philippine communities, LGUs, schools, and commercial spaces. By combining computer vision and sensor telemetry with Python FastAPI and Stellar blockchain micro-rewards, JuanaBin automatically identifies waste types (`biodegradable`, `recyclable_paper`, `recyclable_plastic`), controls motorized bin flaps, and rewards users with redeemable points and on-chain tokens.
+Municipal solid waste management in Philippine LGUs and urban communities faces critical challenges due to improper waste segregation at source, high hauling costs, and low public participation. Traditional waste collection relies on manual sorting at transfer stations, leading to high contamination rates of recyclable materials and swelling landfill volumes.
 
-* **Official Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
-* **Frontend Repository:** React + Tailwind Application (connected via REST API)
+JuanaBin PH solves this gap by integrating IoT-enabled smart physical bins, real-time computer vision classification, and automated blockchain reward settlement into a unified system. Instead of fragmented manual bin inspections and delayed incentive programs, JuanaBin automates waste identification, flap actuation, point scoring, and transparent reward token anchoring on the Stellar network.
+
+---
+
+## 🔁 The JuanaBin Operating Loop
+
+`Scan Payload → Actuate Servo → Calculate Points → Anchor Token`
+
+| Capability | What it helps you do | Status |
+| :--- | :--- | :--- |
+| **Computer Vision Ingestion** | Ingest waste image frames and inference payloads from physical bin sensors | Implemented (Alpha) |
+| **Hardware Lid Actuation** | Signal microcontrollers (Raspberry Pi/ESP32) to open specific bin flaps | Implemented (Alpha) |
+| **Segregate-to-Earn Engine** | Calculate points based on material weight and category rules | Implemented (Alpha) |
+| **Stellar Token Anchoring** | Provision testnet wallets and dispatch `JBIN` reward transactions on Stellar Horizon | Implemented (Alpha) |
+| **LGU Telemetry Analytics** | Aggregate fill levels and waste metrics for municipal monitoring dashboards | In Progress |
+| **Audio Guidance Webhook** | Trigger physical speaker voice prompts to guide user disposal | Planned |
+
+---
+
+## ✨ What You Can Do Today
+
+* **Ingest Waste Classification Payloads:** Receive camera frame inferences and material categories (`biodegradable`, `recyclable_paper`, `recyclable_plastic`) via REST endpoints.
+* **Trigger Hardware Lid Actuation:** Send real-time control signals to Raspberry Pi or ESP32 microcontrollers to open target bin compartments.
+* **Calculate Automated Reward Balances:** Award points dynamically based on waste category weights (e.g., 30 points per 100g for plastics).
+* **Provision & Fund Stellar Testnet Wallets:** Generate and fund non-custodial Stellar Testnet keypairs for field officers and users.
+* **Anchor Rewards on Stellar Horizon:** Validate and record reward transfer transactions transparently on the Stellar Horizon Testnet.
+* **Manage PostgreSQL Data Persistence:** Track officers, intake events, reward points, and transaction hashes via SQLAlchemy 2.x ORM and Alembic migrations.
+
+---
+
+## 🌐 How JuanaBin Uses Stellar Horizon
+
+| Capability | How JuanaBin uses it today |
+| :--- | :--- |
+| **Wallet Provisioning** | Automatically generates non-custodial keypairs and requests initial testnet funding via Friendbot |
+| **Token Transfer & Anchoring** | Dispatches custom reward transactions (`JBIN` tokens) for verified waste disposal events |
+| **Immutable Proof Layer** | Validates transaction hashes against Stellar Horizon to serve as auditable proof of community recycling effort |
+
+---
+
+## 💡 Innovation and Differentiation
 
 > [!NOTE]
-> ### 💡 Why JuanaBin? (Impact & Feasibility Data)
+> ### Impact & Feasibility Data
 > * **LGU Cost Reduction:** A single LGU like Pasig City generates ~23,959 tons of garbage yearly. JuanaBin’s automated sorting dramatically reduces contamination and hauling costs, helping save up to **₱59,800/day** per collection network.
 > * **Circular Economy:** Automated segregation channels PET plastics and recyclables directly into upcycled products (furniture, eco-bricks).
 > * **Gamification & Micro-Incentives:** Users earn points for correct disposal which can be converted to convenience store credits, digital cash, or anchored on the Stellar Horizon Testnet.
 
 ---
 
-## ⚡ Core Backend Features
+## 👥 Who JuanaBin Is For
 
-* **📷 Computer Vision Payload Receiver:** Ingests classification payload and image frames from bin-mounted camera units for processing.
-* **🤖 Servo & Lid Actuation Gateway:** Sends real-time signals to hardware microcontrollers (Raspberry Pi/ESP32) to trigger specific compartment doors upon valid classification.
-* **💰 Segregate-to-Earn Rewards Engine:** Calculates user points based on material weight and category, manages ledger balance, and anchors payouts transparently on-chain.
-* **🌌 Stellar Horizon Integration:** Automatically provisions wallets and submits token transfer operations on the Stellar Horizon Testnet.
-* **📊 Data-Driven Insights & Analytics:** Collects bin fill-level telemetry, waste type metrics, and location-based usage reports for LGU dashboards.
-* **🔊 Audio & Guidance Webhook:** Triggers contextual voice prompts on physical bin speakers to guide users during disposal.
+* **Local Government Units (LGUs):** Municipalities seeking to lower landfill hauling fees, monitor barangay compliance, and digitize waste telemetry.
+* **Schools and Universities:** Campus green initiatives aiming to encourage student recycling through instant rewards.
+* **Commercial Establishments & Malls:** High-foot-traffic venues wanting automated segregation and branded sustainability metrics.
+* **Waste Management Operators & Materials Recovery Facilities (MRFs):** Facilities receiving cleaner, pre-sorted recyclables for efficient processing.
+* **Barangay Communities:** Residents incentivized to segregate household waste through redeemable points and digital tokens.
 
 ---
 
-## ⚙️ Hardware & Software Integration Specifications
+## ⚙️ Hardware & Software Stack
 
 | Component | Technology / Spec | Function |
 | :--- | :--- | :--- |
@@ -75,11 +113,9 @@
 
 ---
 
-## 🏗 System Architecture
+## 🏗️ System Architecture
 
-### Processing & Layer Flow
-
-```
+```text
 +-----------------------+         +-----------------------+         +-----------------------+
 |  Hardware & Sensors   |  HTTP/  |   FastAPI Backend     |  Query  | PostgreSQL 17         |
 | (Camera, Servos, IoT) +-------->+  (Python 3.12 Service) +-------->+ (Docker Container)    |
@@ -92,16 +128,13 @@
                                   +-----------------------+
 ```
 
-### Layer Structure
-```
-Route (app/api/v1) ---> Service (app/services) ---> Repository (app/repositories) ---> SQLAlchemy 2.x ORM
-```
+`Layer Structure: Route (app/api/v1) ---> Service (app/services) ---> Repository (app/repositories) ---> SQLAlchemy 2.x ORM`
 
 ---
 
-## 📁 Repository Directory Structure
+## 📦 Repository Map
 
-```
+```text
 app/
   main.py                  FastAPI application instance, CORS & error handling
   core/
@@ -129,7 +162,7 @@ docker-compose.yml         PostgreSQL + FastAPI services setup
 
 ---
 
-## 📖 API Documentation & Endpoint Overview
+## 📖 API Documentation
 
 > 💡 **Interactive Swagger UI Documentation:** Available locally at [http://localhost:8000/docs](http://localhost:8000/docs) (or port `8001` when running FastAPI natively).
 
@@ -160,58 +193,60 @@ Points are awarded per full 100 grams, weighted by waste category (`app/services
 
 ---
 
-## 🚀 Getting Started
-
-Follow these step-by-step instructions to set up and run the JuanaBin backend server locally.
+## 🚀 Run JuanaBin Locally
 
 ### Prerequisites
 * **Python**: `v3.12`
 * **Docker Desktop**: Installed and running (PostgreSQL runs in Docker)
 * **Shell**: Windows PowerShell
 
-### 1. Clone & Setup Virtual Environment
+### 1. Clone & set up the virtual environment
+Clone the repository and initialize a Python 3.12 virtual environment:
 
 ```powershell
 git clone https://github.com/JuanaBin-PH/juanabin-ph-backend.git
 cd juanabin-ph-backend
-
-# Create and activate virtual environment
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 2. Install Dependencies
+### 2. Install dependencies
+Install required Python packages into the active virtual environment:
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-### 3. Environment Setup
+### 3. Configure environment variables
+Copy the template configuration file to create your local `.env`:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-### 4. Start PostgreSQL Container
+### 4. Start the PostgreSQL container
+Spin up the database container using Docker Compose:
 
 ```powershell
 docker compose up -d postgres
 ```
 
-### 5. Run Database Migrations
+### 5. Run database migrations
+Apply Alembic database migrations to bring the PostgreSQL schema to the latest version:
 
 ```powershell
 alembic upgrade head
 ```
 
-### 6. Start Development Server
+### 6. Start the development server
+Launch the Uvicorn ASGI server with live reloading enabled:
 
 ```powershell
 uvicorn app.main:app --reload --port 8000
 ```
-*Access API Docs at `http://localhost:8000/docs`.*
 
-### 7. Run Tests
+### 7. Run tests
+Execute the automated pytest suite using in-memory SQLite dependency overrides:
 
 ```powershell
 pytest
@@ -219,12 +254,23 @@ pytest
 
 ---
 
-## 🗺️ 30-Day Instawards Project Roadmap
+## 🗺️ Roadmap and Upcoming Features
+
+Roadmap items describe current direction and may change based on community feedback, hardware availability, and partnership developments.
 
 - [x] **Milestone 1:** Stellar Testnet Wallet Provisioning & JBIN Asset Deployment.
 - [x] **Milestone 2:** Segregate-to-Earn Business Logic & Payout Engine Implementation.
 - [ ] **Milestone 3:** Live Community Pilot Demo Dashboard & Public On-Chain Verification.
 - [ ] **Milestone 4:** Mainnet Deployment & Soroban Smart Contract Automation.
+
+---
+
+## ⚠️ Alpha Boundaries
+
+* **Testnet Scope:** Reward payouts and token anchoring operate strictly on the Stellar Horizon **Testnet** (not Mainnet).
+* **Hardware Connectivity:** Servo flap actuation commands assume an active Raspberry Pi/ESP32 microcontroller listening on the local network.
+* **Authentication Mode:** Kinde authentication interface is driven by environment flags and defaults to local dev mode (`KINDE_AUTH_ENABLED=false`).
+* **Database Isolation:** PostgreSQL is required for development/production execution and is containerized via Docker Compose.
 
 ---
 
@@ -236,6 +282,12 @@ pytest
 * **Terence Louis Espedilla** — Development Product Manager
 * **Joel Sta. Ana** — Mechanical Engineer
 * **Engr. Bhai Nhuraisha I. Diplomo** — Adviser (MSECE/MSICT)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please ensure all code additions maintain modular layer separation (`Route -> Service -> Repository`), include tests where applicable, and pass the existing pytest suite prior to submitting a pull request.
 
 ---
 
