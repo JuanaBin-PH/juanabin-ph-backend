@@ -1,7 +1,7 @@
 <div align="center">
 
   <br />
-  <img src="https://raw.githubusercontent.com/JuanaBin-PH/juanabin-ph-backend/main/app/assets/logo.png" alt="JuanaBin PH Logo" width="120" error="this.src='https://img.icons8.com/color/144/recycle--v1.png';" />
+  <img src="https://raw.githubusercontent.com/.../main/app/assets/juanabin-logo.png" alt="JuanaBin PH Logo" width="120" error="this.src='https://img.icons8.com/color/144/recycle--v1.png';" />
   
   # JuanaBin PH
 
