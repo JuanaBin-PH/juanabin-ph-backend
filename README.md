@@ -128,6 +128,17 @@ Interactive docs: http://localhost:8000/docs
 
 ---
 
+---
+
+## 🗺️ Project Roadmap (30-Day Instawards Engagement)
+
+- [x] **Milestone 1:** Stellar Testnet Wallet Provisioning & JBIN Asset Deployment.
+- [x] **Milestone 2:** Segregate-to-Earn Business Logic & Payout Engine Implementation.
+- [ ] **Milestone 3:** Live Community Pilot Demo Dashboard & Public On-Chain Verification.
+- [ ] **Milestone 4:** Mainnet Deployment & Soroban Smart Contract Automation.
+
+---
+
 ## Tech stack
 
 | Concern        | Choice                       |
