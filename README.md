@@ -505,3 +505,8 @@ container.
 
 ## ✉️ Contact & Support
 For questions or inquiries regarding JuanaBin PH backend development, please reach out via our official website or Telegram channel.
+
+---
+
+## 📄 License
+This repository is developed for the JuanaBin PH project. All rights reserved.
