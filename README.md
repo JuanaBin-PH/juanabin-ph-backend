@@ -54,7 +54,9 @@ Route (api/v1/endpoints) -> Service (services/) -> Repository (repositories/) ->
 Pydantic schemas (`app/schemas/`) are the API contract. SQLAlchemy models
 (`app/models/`) are never returned directly to clients.
 
-### Project layout
+---
+
+## 📁 Project Directory Layout
 
 ```
 app/
