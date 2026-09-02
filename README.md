@@ -349,6 +349,28 @@ Points are awarded per full 100 g, weighted by category
 
 ## API endpoints
 
+### Example Payload: Record Waste Event (`POST /api/v1/waste-events`)
+
+**Request Body:**
+json
+{
+"officer_id": 1,
+"waste_type": "recyclable_plastic",
+"weight_grams": 500
+}
+
+**Response (201 Created):**
+json
+{
+"id": 12,
+"officer_id": 1,
+"waste_type": "recyclable_plastic",
+"weight_grams": 500,
+"points_awarded": 150,
+"created_at": "2026-09-02T15:30:00Z"
+}
+
+
 | Method | Path                                    | Description |
 | ------ | --------------------------------------- | ----------- |
 | GET    | `/health`                               | Liveness — does not touch the database |
