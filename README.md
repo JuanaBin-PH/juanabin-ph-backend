@@ -461,3 +461,7 @@ container.
   `500 {"detail": "Internal server error"}` — stack traces are never exposed.
 - CORS is an explicit allow-list from the environment; no `*` in production.
 - Secrets live in `.env` (git-ignored) and are injected as environment variables.
+
+
+## ✉️ Contact & Support
+For questions or inquiries regarding JuanaBin PH backend development, please reach out via our official website or Telegram channel.
