@@ -11,6 +11,7 @@ are anchored to Stellar transactions on the **Horizon Testnet**.
 
 The frontend (React + Tailwind) lives in a separate repository.
 
+**Built with:** Python | FastAPI | PostgreSQL | Docker | Stellar SDK
 ---
 
 ## Architecture
