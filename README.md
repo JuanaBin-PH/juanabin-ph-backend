@@ -1,256 +1,183 @@
 <div align="center">
 
-# JuanaBin PH — Backend Service
-### Application & Reward Operations on Stellar
+  <img src="https://raw.githubusercontent.com/JuanaBin-PH/juanabin-ph-backend/main/assets/juanabin-logo.png" alt="JuanaBin Logo" width="120" />
 
-[![Status](https://img.shields.io/badge/Status-Testnet%20Alpha-orange?style=for-the-badge)](https://github.com/)
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Stellar](https://img.shields.io/badge/Stellar-Testnet-14B6E7?style=for-the-badge&logo=stellar&logoColor=white)](https://www.stellar.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=for-the-badge)](#-license)
+  # JuanaBin PH — Backend API & IoT Hub
 
----
+  ### **AI-Powered Smart Waste Segregation & Rewards Ecosystem on Stellar**
+  *Automating proper waste disposal, incentivizing circular economy, and powering green communities across the Philippines.*
 
-[Official Website](https://juliesoriano2026.wixsite.com/juanabin-ph) • [API Reference](#-api-reference--sample-json-payloads) • [Architecture](#%EF%B8%8F-architecture--processing-flow) • [Setup Guide](#-local-setup-guide-windows-powershell--docker) • [Roadmap](#%EF%B8%8F-30-day-instawards-project-roadmap)
+  [![Status](https://img.shields.io/badge/Status-Alpha%20v1.0-orange.svg)](#)
+  [![Python](https://img.shields.io/badge/Python-v3.12-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
+  [![Framework](https://img.shields.io/badge/Framework-FastAPI%200.100+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+  [![Blockchain](https://img.shields.io/badge/Blockchain-Stellar%20Testnet-14B6E7.svg?logo=stellar&logoColor=white)](https://www.stellar.org/)
+  [![Database](https://img.shields.io/badge/Database-PostgreSQL%2017-4169E1.svg?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+  [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
+  [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 
 </div>
 
+<p align="center">
+  <a href="#-about-juanabin-ph">About JuanaBin</a> •
+  <a href="#-core-backend-features">Core Features</a> •
+  <a href="#%EF%B8%8F-hardware--software-integration-specifications">Hardware Specs</a> •
+  <a href="#-system-architecture">Architecture</a> •
+  <a href="#-api-documentation">API Documentation</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-team--leadership">Team</a>
+</p>
+
 ---
 
-## 🌐 Project Overview & Official Website Link
+> [!IMPORTANT]
+> **JuanaBin PH Backend is in active development (Alpha Testnet Phase).** 
+> The system connects camera-based waste classification endpoints with hardware servo controls, FastAPI endpoints, PostgreSQL data persistence, and automated Stellar Horizon Testnet reward token anchoring (`JBIN`).
+
+---
+
+## 🌿 About JuanaBin PH
+
+**JuanaBin PH** is an IoT-enabled, AI-powered smart waste segregation system built specifically for Philippine communities, LGUs, schools, and commercial spaces. By combining computer vision and sensor telemetry with Python FastAPI and Stellar blockchain micro-rewards, JuanaBin automatically identifies waste types (`biodegradable`, `recyclable_paper`, `recyclable_plastic`), controls motorized bin flaps, and rewards users with redeemable points and on-chain tokens.
 
 * **Official Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
-* **Frontend Repository:** Available in a separate repository *(React + Tailwind)*.
+* **Frontend Repository:** React + Tailwind Application (connected via REST API)
 
-### About JuanaBin PH
-**JuanaBin PH** is a blockchain-powered **Segregate-to-Earn** platform designed to incentivize proper household waste management and community environmental compliance. Operating on the **Stellar Horizon Testnet**, officers record waste intake events, automatically earn non-custodial reward points, and anchor payout transactions transparently on-chain.
-
----
-
-## ✨ Key Features
-
-- **Segregate-to-Earn Reward Engine:** Automated point calculation based on material type (`biodegradable`, `recyclable_paper`, `recyclable_plastic`).
-- **Stellar Horizon Blockchain Anchoring:** Directly provisions testnet wallets and dispatches reward payouts transparently on the Stellar Testnet.
-- **Kinde Authentication:** Identity-first authentication interface mapping users directly to Stellar wallet addresses.
-- **Auditable & Layered Architecture:** Strict separation between API Routes, Business Logic Services, Repositories, and SQLAlchemy ORM.
+### Why JuanaBin? (Impact & Feasibility Data)
+* **LGU Cost Reduction:** A single LGU like Pasig City generates ~23,959 tons of garbage yearly. JuanaBin’s automated sorting dramatically reduces contamination and hauling costs, helping save up to **₱59,800/day** per collection network.
+* **Circular Economy:** Automated segregation channels PET plastics and recyclables directly into upcycled products (furniture, eco-bricks).
+* **Gamification & Micro-Incentives:** Users earn points for correct disposal which can be converted to convenience store credits, digital cash, or anchored on the Stellar Horizon Testnet.
 
 ---
 
-## 🏗️ Architecture & Processing Flow
+## ⚡ Core Backend Features
 
-### System Overview
-```
-React frontend  (separate repo, http://localhost:5173)
-      |
-      v
-FastAPI backend  (this repo, :8000)
-      |
-      +--> PostgreSQL 17   (Docker container: juanabin-postgres)
-      |
-      +--> Stellar Horizon Testnet
-```
-
-### Layered Processing Flow
-Request flow is strictly layered — no business logic in route handlers:
-
-```
-Route (api/v1/endpoints) -> Service (services/) -> Repository (repositories/) -> SQLAlchemy
-```
-
-Pydantic schemas (`app/schemas/`) are the API contract. SQLAlchemy models (`app/models/`) are never returned directly to clients.
-
-### Engineering & Architecture Principles
-- **Modular Monolith:** Deferred infrastructure (Redis, Celery, RabbitMQ, AWS, MQTT, Soroban, ML runtimes) stays deferred.
-- **Typed Python:** SQLAlchemy 2.x `Mapped[]` / `mapped_column()` used throughout.
-- **Dependency Injection:** Database sessions injected as dependencies for clean testing and isolation.
-- **Robust Error Handling:** Unhandled exceptions are logged server-side and returned as an opaque `500 {"detail": "Internal server error"}` to prevent exposing stack traces.
-- **CORS & Security:** Explicit origin allow-list loaded from environment settings; no `*` wildcard in production. Secrets are managed in `.env` (git-ignored).
+* **📷 Computer Vision Payload Receiver:** Ingests classification payload and image frames from bin-mounted camera units for processing.
+* **🤖 Servo & Lid Actuation Gateway:** Sends real-time signals to hardware microcontrollers (Raspberry Pi/ESP32) to trigger specific compartment doors upon valid classification.
+* **💰 Segregate-to-Earn Rewards Engine:** Calculates user points based on material weight and category, manages ledger balance, and anchors payouts transparently on-chain.
+* **🌌 Stellar Horizon Integration:** Automatically provisions wallets and submits token transfer operations on the Stellar Horizon Testnet.
+* **📊 Data-Driven Insights & Analytics:** Collects bin fill-level telemetry, waste type metrics, and location-based usage reports for LGU dashboards.
+* **🔊 Audio & Guidance Webhook:** Triggers contextual voice prompts on physical bin speakers to guide users during disposal.
 
 ---
 
-## 📁 Project Directory Layout
+## ⚙️ Hardware & Software Integration Specifications
+
+| Component | Technology / Spec | Function |
+| :--- | :--- | :--- |
+| **Microcontroller / SBC** | Raspberry Pi / ESP32 | Bin controller unit & network interface |
+| **Actuators** | High-torque Servo Motors | Opens individual compartment lids on demand |
+| **Sensors & Vision** | Camera Module, Ultrasonic Sensors | Scans waste type & monitors bin fill level |
+| **Backend Runtime** | Python 3.12 + FastAPI + Uvicorn | Core REST API, business services, and database integration |
+| **Database & ORM** | PostgreSQL 17 + SQLAlchemy 2.x + Alembic | Persistent storage for users, events, rewards, and schema migrations |
+| **Blockchain Engine** | Stellar SDK (`stellar-sdk`) | Horizon Testnet wallet funding & transaction validation |
+| **Power System Support** | Car Battery / DC Converter / Solar | Designed for mobile and outdoor LGU placement |
+
+---
+
+## 🏗 System Architecture
+
+### Processing & Layer Flow
+
+```
++-----------------------+         +-----------------------+         +-----------------------+
+|  Hardware & Sensors   |  HTTP/  |   FastAPI Backend     |  Query  | PostgreSQL 17         |
+| (Camera, Servos, IoT) +-------->+  (Python 3.12 Service) +-------->+ (Docker Container)    |
++-----------------------+  MQTT   +-----------+-----------+         +-----------------------+
+                                              |
+                                              v
+                                  +-----------------------+
+                                  | Stellar Horizon       |
+                                  | Testnet Blockchain    |
+                                  +-----------------------+
+```
+
+### Modular Layer Structure
+```
+Route (app/api/v1) ---> Service (app/services) ---> Repository (app/repositories) ---> SQLAlchemy 2.x ORM
+```
+
+---
+
+## 📁 Repository Directory Structure
 
 ```
 app/
-  main.py                  FastAPI app, CORS, error handler
+  main.py                  FastAPI application instance, CORS & error handling
   core/
-    config.py              Pydantic-settings configuration
+    config.py              Pydantic-settings environment configuration
     security.py            Kinde authentication interface
   db/
     session.py             Engine, SessionLocal, Base, get_db dependency
   models/                  SQLAlchemy 2.x typed ORM models
     officer.py  waste_event.py  reward.py  stellar_transaction.py
   schemas/                 Pydantic v2 request/response models
-  repositories/            Data access, one module per aggregate
-  services/                Business rules (points calculation, Stellar validation)
+  repositories/            Data access repositories (one module per aggregate)
+  services/                Business rules (points calculation, Stellar Horizon validation)
   api/
     deps.py                Shared FastAPI dependencies
     v1/
       router.py            Mounts all v1 endpoint routers under /api/v1
       endpoints/           officers, waste_events, rewards, stellar, health
-tests/                     pytest suite (SQLite in-memory, DI-overridden)
+tests/                     pytest suite (SQLite in-memory with DI overrides)
 alembic/
-  versions/                Migration scripts — source of truth for the schema
+  versions/                Schema migration scripts (Source of Truth)
 alembic.ini
 Dockerfile
-docker-entrypoint.sh       Runs `alembic upgrade head`, then uvicorn
-docker-compose.yml         postgres + api services
+docker-compose.yml         PostgreSQL + FastAPI services setup
 ```
 
 ---
 
-## 📡 API Reference & Sample JSON Payloads
+## 📖 API Documentation Overview
 
-> 💡 **Interactive API Documentation:** Interactive Swagger UI documentation is available locally at [http://localhost:8000/docs](http://localhost:8000/docs) (or port `8001` when running FastAPI natively).
+> 💡 **Interactive Swagger UI:** Available locally at [http://localhost:8000/docs](http://localhost:8000/docs) (or port `8001` when running FastAPI natively).
 
-### Endpoint Overview
-
-| Method | Path | Description |
-| :--- | :--- | :--- |
-| `GET` | `/health` | Liveness — does not touch the database |
-| `GET` | `/api/v1/health` | Liveness (versioned) |
-| `GET` | `/api/v1/health/db` | Readiness — `SELECT 1`, returns 503 if the DB is down |
-| `GET` | `/api/v1/officers` | List officers |
-| `POST` | `/api/v1/officers` | Create an officer |
-| `GET` | `/api/v1/officers/{id}` | Get one officer |
-| `GET` | `/api/v1/waste-events` | List waste events |
-| `POST` | `/api/v1/waste-events` | Record a waste event, assigns points |
-| `GET` | `/api/v1/rewards` | List rewards |
-| `POST` | `/api/v1/rewards` | Create a reward |
-| `GET` | `/api/v1/stellar/transactions/{id}` | Get a stored Stellar transaction |
-| `POST` | `/api/v1/stellar/validate?hash=...` | Validate a hash against Horizon Testnet |
-
-### Sample Payload: Record Waste Event (`POST /api/v1/waste-events`)
-
-**Request Body:**
-```json
-{
-  "officer_id": 1,
-  "waste_type": "recyclable_plastic",
-  "weight_grams": 500
-}
-```
-
-**Response (201 Created):**
-```json
-{
-  "id": 12,
-  "officer_id": 1,
-  "waste_type": "recyclable_plastic",
-  "weight_grams": 500,
-  "points_awarded": 150,
-  "created_at": "2026-09-02T15:30:00Z"
-}
-```
+| Method | Endpoint | Description | Auth / Role |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/health` | Server Liveness check | Public |
+| `GET` | `/api/v1/health/db` | Database Readiness check (`SELECT 1`) | Public |
+| `GET` | `/api/v1/officers` | List all registered officers | API Key / Auth |
+| `POST` | `/api/v1/officers` | Register new field officer | Admin |
+| `GET` | `/api/v1/waste-events` | List recorded waste intake events | API Key / Auth |
+| `POST` | `/api/v1/waste-events` | Submit waste image/weight payload & earn points | Bin / API Key |
+| `GET` | `/api/v1/rewards` | Query officer reward points balance | Bearer Token |
+| `POST` | `/api/v1/rewards` | Issue manual/custom reward credit | Admin |
+| `GET` | `/api/v1/stellar/transactions/{id}`| Fetch on-chain Stellar transaction log | Public / Auth |
+| `POST` | `/api/v1/stellar/validate` | Validate transaction hash against Horizon Testnet | Public / Auth |
 
 ---
 
-## ⚙️ Tech Stack & Requirements
+## 🎯 Points Calculation Rules
 
-### Tech Stack
+Points are awarded per full 100 grams, weighted by waste category (`app/services/waste_event.py`):
 
-| Concern | Choice |
+| Waste Category | Points per 100 g |
 | :--- | :--- |
-| **Language** | Python 3.12 |
-| **Web Framework** | FastAPI + Uvicorn |
-| **ORM** | SQLAlchemy 2.x (typed ORM) |
-| **Migrations** | Alembic |
-| **Database** | PostgreSQL 17 (Docker only) |
-| **DB Driver** | psycopg2-binary |
-| **Validation** | Pydantic v2 + pydantic-settings |
-| **Testing** | pytest |
-| **Blockchain** | stellar-sdk (Horizon Testnet) |
-| **Auth** | Kinde |
-| **Packaging** | Docker / Docker Compose |
-
-### System Requirements
-
-- **Python:** 3.12
-- **Docker Desktop:** Required (PostgreSQL runs **only** in Docker for this project)
-- **Shell:** Windows PowerShell (all setup commands are PowerShell-native)
-
-### Data Models & Schema Overview
-
-| Table | Purpose | Key Columns |
-| :--- | :--- | :--- |
-| `officers` | Field officers | `name`, `email` (unique) |
-| `waste_events` | A waste submission/intake event | `officer_id` → `officers.id`, `waste_type`, `weight_grams`, `points_awarded` |
-| `rewards` | Reward points earned by an officer | `officer_id` → `officers.id`, `points`, `reason` |
-| `stellar_transactions` | Testnet transaction anchoring a reward | `officer_id` → `officers.id`, `stellar_transaction_hash`, `amount`, `asset_code`, `status` |
-
-> 💡 **Database Constraints:** `waste_type` is constrained at the database level (`waste_type_check`) to: `biodegradable`, `recyclable_paper`, or `recyclable_plastic`.
-
-### Points Calculation Rules
-
-Points are awarded per full 100 g, weighted by category (`app/services/waste_event.py`):
-
-| Waste Type | Points per 100 g |
-| :--- | :--- |
-| `biodegradable` | 10 |
-| `recyclable_paper` | 20 |
-| `recyclable_plastic` | 30 |
-
-### Environment Variables
-
-| Variable | Purpose | Local Default |
-| :--- | :--- | :--- |
-| `DATABASE_URL` | SQLAlchemy connection URL | `postgresql+psycopg2://postgres:postgres@127.0.0.1:5432/juanabin` |
-| `FRONTEND_URL` | Frontend origin, CORS fallback | `http://localhost:5173` |
-| `ALLOWED_ORIGINS` | Comma-separated CORS allow-list (no wildcards) | `http://localhost:5173` |
-| `KINDE_AUTH_ENABLED` | Toggle Kinde JWT validation | `false` |
-| `KINDE_ISSUER` | Kinde issuer URL | *(empty)* |
-| `KINDE_AUDIENCE` | Kinde API audience | `juanabin-ph` |
-
-> 💡 **Note:** `.env.example` documents every variable name and contains **no real secrets**.
-
-#### Database Host Configuration: `127.0.0.1` vs `postgres`
-
-This is configured explicitly in both places:
-
-| Where FastAPI Runs | Database Host to Use | Set In |
-| :--- | :--- | :--- |
-| Directly on Windows | `127.0.0.1:5432` | `.env` |
-| Inside Docker Compose | `postgres:5432` | `docker-compose.yml` (`api.environment`) |
-
-> ℹ️ **Why `127.0.0.1`?** `127.0.0.1` is used rather than `localhost` because this machine has native PostgreSQL installations (`postgresql-x64-14`, `postgresql-x64-18`) that can resolve/bind ambiguously on `localhost`. Inside the backend container, `127.0.0.1` would point at the container itself — never the database — so Compose overrides `DATABASE_URL` with the `postgres` service hostname.
-
-### Integrations Detail
-
-#### Authentication (Kinde)
-`app/core/security.py` exposes a `KindeAuthProvider` interface that can later validate Kinde JWTs without touching routes or services. It is driven entirely by environment variables:
-- `KINDE_AUTH_ENABLED=false` (local default) returns a stub local-dev principal.
-- `KINDE_AUTH_ENABLED=true` requires `KINDE_ISSUER` and `KINDE_AUDIENCE`, and is where real JWT signature/claims validation gets implemented.
-
-No Kinde credentials are invented or committed. Routes consume auth through the `app/api/deps.py` dependency, so swapping the implementation is a one-file change.
-
-#### Stellar Horizon Blockchain Integration
-All Stellar work is confined to `app/services/stellar.py` — routes never talk to Horizon directly.
-- **Horizon Testnet only** (`https://horizon-testnet.stellar.org`).
-- No mainnet submission.
-- No Soroban.
-
-The service validates transaction hashes and XDR payloads, and translates SDK errors into clean application-level `HTTPException`s.
+| `biodegradable` | 10 pts |
+| `recyclable_paper` | 20 pts |
+| `recyclable_plastic` | 30 pts |
 
 ---
 
-## 🚀 Local Setup Guide (Windows PowerShell / Docker)
+## 🚀 Getting Started
 
-### 1. Create and Activate Virtual Environment
+Follow these step-by-step instructions to set up and run the JuanaBin backend server locally.
+
+### Prerequisites
+* **Python**: `v3.12`
+* **Docker Desktop**: Installed and running (PostgreSQL runs in Docker)
+* **Shell**: Windows PowerShell
+
+### 1. Clone & Setup Virtual Environment
 
 ```powershell
+git clone https://github.com/JuanaBin-PH/juanabin-ph-backend.git
+cd juanabin-ph-backend
+
+# Create and activate virtual environment
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
-
-Confirm the interpreter is the project one:
-
-```powershell
-python -c "import sys; print(sys.executable)"
-```
-
-> 💡 **Note:** It must print a path ending in `juanabin-ph-backend\.venv\Scripts\python.exe`.
 
 ### 2. Install Dependencies
 
@@ -258,221 +185,59 @@ python -c "import sys; print(sys.executable)"
 pip install -r requirements.txt
 ```
 
-### 3. Environment Configuration
+### 3. Environment Setup
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-> ⚠️ **Important:** `.env` is git-ignored and must never be committed.
-
 ### 4. Start PostgreSQL Container
 
 ```powershell
 docker compose up -d postgres
-docker ps
-docker port juanabin-postgres
 ```
 
-### 5. Apply Database Migrations
+### 5. Run Database Migrations
 
 ```powershell
 alembic upgrade head
 ```
 
-### 6. Run FastAPI Backend
+### 6. Start Development Server
 
 ```powershell
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8000
 ```
+*Access API Docs at `http://localhost:8000/docs`.*
 
-- **Interactive API Docs:** [http://localhost:8001/docs](http://localhost:8001/docs)
-- **Health Check:** [http://localhost:8001/health](http://localhost:8001/health)
-
-### 7. Run Test Suite
+### 7. Run Tests
 
 ```powershell
 pytest
 ```
 
-> 💡 **Test Execution Info:** Tests use an in-memory SQLite database injected by overriding the `get_db` dependency (`tests/conftest.py`), so they never touch the Docker database or any production data.
-
----
-
-### Docker Deployment & Operation
-
-#### Full Stack (Backend + PostgreSQL) — Recommended
-Compose wires the two services together, waits for the database healthcheck, and runs migrations before serving:
-
-```powershell
-docker compose up -d --build      # build and start postgres + api
-docker compose ps                 # status and health
-docker compose logs -f api        # follow backend logs
-docker compose down               # stop (keeps the data volume)
-```
-
-The API is accessible on `http://localhost:8000` and PostgreSQL on `localhost:5432`.
-
-> ⚠️ **Caution:** `docker compose down -v` would delete the `postgres_data` volume and all data. Use plain `docker compose down` unless you intend to wipe the database.
-
-#### PostgreSQL Only (Running FastAPI on Windows Directly)
-
-```powershell
-docker compose up -d postgres
-```
-
-#### Standalone Backend Docker Image
-
-```powershell
-docker build -t juanabin-ph-backend .
-docker run --name juanabin-backend -p 8000:8000 --env-file .env juanabin-ph-backend
-```
-
-> 💡 **Note:** With `--env-file .env`, `DATABASE_URL` points at `127.0.0.1`, which inside the container is the container itself. For a working standalone run, either use Compose (preferred) or override the host:
-
-```powershell
-docker run --name juanabin-backend -p 8000:8000 `
-  -e DATABASE_URL="postgresql+psycopg2://postgres:postgres@host.docker.internal:5432/juanabin" `
-  juanabin-ph-backend
-```
-
-*Note: The backend image contains no PostgreSQL — the database is always a separate container.*
-
----
-
-### PostgreSQL Port 5432 Troubleshooting
-
-PostgreSQL for this project runs **only** in Docker. If a native Windows PostgreSQL service is holding port 5432, Docker cannot bind it.
-
-#### 1. Diagnose Port 5432 Occupancy
-
-```powershell
-Get-NetTCPConnection -LocalPort 5432 -State Listen |
-  Select-Object LocalAddress,LocalPort,State,OwningProcess
-
-Get-Process -Id <PID>
-
-Get-CimInstance Win32_Process -Filter "ProcessId = <PID>" |
-  Select-Object ProcessId,Name,ExecutablePath
-```
-
-#### 2. Inspect Native PostgreSQL Services
-
-```powershell
-Get-CimInstance Win32_Service |
-  Where-Object { $_.Name -like "postgresql*" } |
-  Select-Object Name,State,StartMode,PathName
-```
-
-#### 3. Stop Native Service (Requires Elevation)
-
-Stop the specific service — do not kill `postgres.exe` directly, as that bypasses the service manager and can leave the data directory in a recovery state.
-
-In a normal shell (triggers one UAC prompt):
-
-```powershell
-Start-Process powershell -Verb RunAs -ArgumentList '-NoExit','-Command', `
-  'Stop-Service -Name postgresql-x64-18 -Force; Set-Service -Name postgresql-x64-18 -StartupType Manual'
-```
-
-Or in a shell already opened via *Run as Administrator*:
-
-```powershell
-Stop-Service -Name "postgresql-x64-18" -Force
-Set-Service  -Name "postgresql-x64-18" -StartupType Manual   # don't reclaim 5432 on reboot
-```
-
-Repeat for any other `postgresql-x64-*` service that is listening. PostgreSQL stays installed — only the service is stopped.
-
-#### 4. Alternative: No Administrator Rights Needed
-
-If you cannot elevate, leave the native service running and move Docker's **host-side** port instead. Set this in `.env`:
-
-```env
-POSTGRES_HOST_PORT=5433
-DATABASE_URL=postgresql+psycopg2://postgres:postgres@127.0.0.1:5433/juanabin
-```
-
-Then `docker compose up -d postgres` binds host `5433` and no longer collides.
-
-#### 5. Verify Docker Owns Port 5432
-
-```powershell
-docker ps
-docker port juanabin-postgres
-Get-NetTCPConnection -LocalPort 5432 -State Listen |
-  Select-Object OwningProcess
-```
-
-The owning process should be Docker's (`com.docker.backend` / `vpnkit-bridge`).
-
-#### 6. Database Connection Verification Commands
-
-```powershell
-python -c "import psycopg2; print('PSYCOPG2 OK')"
-
-python -c "import psycopg2; c=psycopg2.connect('host=127.0.0.1 port=5432 dbname=juanabin user=postgres password=postgres'); print('POSTGRES CONNECTED'); c.close()"
-
-python -c "from app.db.session import engine; c=engine.connect(); print('SQLALCHEMY CONNECTED'); c.close()"
-```
-
-#### 7. Access Interactive PSQL Shell
-
-```powershell
-docker exec -it juanabin-postgres psql -U postgres -d juanabin
-```
-
-Executing `\dt` should list the active tables:
-```text
-alembic_version
-officers
-waste_events
-rewards
-stellar_transactions
-```
-
----
-
-### Alembic Migration Management
-
-Alembic is the **only** source of truth for the schema. `Base.metadata.create_all()` is never used as a substitute in application code. Credentials are not stored in `alembic.ini` — `alembic/env.py` reads `DATABASE_URL` through `app.core.config.settings`.
-
-```powershell
-alembic upgrade head                                    # apply migrations
-alembic revision --autogenerate -m "create core tables" # generate a new migration
-alembic current                                         # show applied revision
-alembic history --verbose                               # list migrations
-alembic check                                           # fail if models drift from migrations
-alembic downgrade -1                                    # roll back one revision
-```
-
-`alembic/env.py` imports `app.models`, which registers every model on `Base.metadata` so autogenerate sees all four tables.
-
 ---
 
 ## 🗺️ 30-Day Instawards Project Roadmap
 
-### Instawards 30-Day Engagement Milestones
 - [x] **Milestone 1:** Stellar Testnet Wallet Provisioning & JBIN Asset Deployment.
 - [x] **Milestone 2:** Segregate-to-Earn Business Logic & Payout Engine Implementation.
 - [ ] **Milestone 3:** Live Community Pilot Demo Dashboard & Public On-Chain Verification.
 - [ ] **Milestone 4:** Mainnet Deployment & Soroban Smart Contract Automation.
 
-### General Platform Development Phases
-- [x] **Phase 1:** Core FastAPI Backend & PostgreSQL Schema Setup.
-- [x] **Phase 2:** Stellar Horizon Testnet Integration & Point Calculation Logic.
-- [ ] **Phase 3:** Kinde Auth full JWT claim validation & Role-Based Access Control (RBAC).
-- [ ] **Phase 4:** Mainnet Deployment & Smart Contract / Soroban Exploration for Automated Reward Distribution.
-- [ ] **Phase 5:** Mobile Web App integration for real-time scanning & intake logs.
-
 ---
 
-## ✉️ Contact & Support
+## 👥 Core Team & Leadership
 
-For questions or inquiries regarding JuanaBin PH backend development, please reach out via our official website or Telegram channel.
+* **Julie Ann Soriano** — CEO / Founder
+* **Jealyn Caldona** — Operations Manager
+* **An Bulaoro** — Finance Manager (CPA)
+* **Terence Louis Espedilla** — Development Product Manager
+* **Joel Sta. Ana** — Mechanical Engineer
+* **Engr. Bhai Nhuraisha I. Diplomo** — Adviser (MSECE/MSICT)
 
 ---
 
 ## 📄 License
 
-This repository is developed for the JuanaBin PH project. All rights reserved.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
