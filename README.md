@@ -1,28 +1,31 @@
-# JuanaBin PH — Backend
+# JuanaBin PH — Backend Service
 
-## 🌐 Official Website & Background
-**Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Stellar](https://img.shields.io/badge/Stellar-Testnet-14B6E7?style=for-the-badge&logo=stellar&logoColor=white)](https://www.stellar.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-JuanaBin PH has been conceptualized and actively operating to promote sustainable waste management, environmental awareness, and community empowerment. Through integrated technology, JuanaBin incentivizes proper disposal and eco-friendly habits anchored on the Stellar blockchain network.
-
-Production-oriented FastAPI service for the JuanaBin PH waste management operations
-platform. Officers record waste intake events, earn reward points, and those rewards
-are anchored to Stellar transactions on the **Horizon Testnet**.
-
-The frontend (React + Tailwind) lives in a separate repository.
-
-**Built with:** Python | FastAPI | PostgreSQL | Docker | Stellar SDK
 ---
 
-git add README.md
-## 🎯 Mission & Impact
-Solid waste disposal remains a critical challenge in local communities. **JuanaBin PH** bridges environmental action and decentralized technology by:
-- **Incentivizing Proper Disposal:** Converting weighed waste intake into measurable reward points.
-- **Blockchain Transparency:** Anchoring rewards and transactions directly onto the **Stellar Horizon Testnet** for auditable and tamper-proof tracking.
-- **Community Empowerment:** Supporting field officers and local households in building eco-friendly habits.
+## 🌐 Official Links & Platform Overview
+* **Official Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
+* **Frontend Repository:** Available in a separate repository *(React + Tailwind)*.
 
+### About JuanaBin PH
+**JuanaBin PH** is a blockchain-powered **Segregate-to-Earn** platform designed to incentivize proper household waste management and community environmental compliance. Operating on the **Stellar Horizon Testnet**, officers record waste intake events, automatically earn non-custodial reward points, and anchor payout transactions transparently on-chain.
 
-## Architecture
+---
+
+## ✨ Key Features
+- **Segregate-to-Earn Reward Engine:** Automated point calculation based on material type (`biodegradable`, `recyclable_paper`, `recyclable_plastic`).
+- **Stellar Blockchain Anchoring:** Directly provisions testnet wallets and dispatches reward payouts on the Stellar Testnet.
+- **Kinde Authentication:** Identity-first authentication mapping users directly to Stellar wallet addresses.
+- **Auditable & Layered Architecture:** Strict separation between API Routes, Business Logic Services, Repositories, and SQLAlchemy ORM.
+
+---
+
+## 🏗️ Architecture & Component Flow
 
 ```
 React frontend  (separate repo, http://localhost:5173)
