@@ -14,7 +14,7 @@ The frontend (React + Tailwind) lives in a separate repository.
 **Built with:** Python | FastAPI | PostgreSQL | Docker | Stellar SDK
 ---
 
-
+git add README.md
 ## 🎯 Mission & Impact
 Solid waste disposal remains a critical challenge in local communities. **JuanaBin PH** bridges environmental action and decentralized technology by:
 - **Incentivizing Proper Disposal:** Converting weighed waste intake into measurable reward points.
@@ -470,6 +470,15 @@ container.
   `500 {"detail": "Internal server error"}` — stack traces are never exposed.
 - CORS is an explicit allow-list from the environment; no `*` in production.
 - Secrets live in `.env` (git-ignored) and are injected as environment variables.
+
+---
+
+## 🗺️ Project Roadmap
+- [x] **Phase 1 (Current):** Core FastAPI Backend & PostgreSQL Schema Setup.
+- [x] **Phase 2 (Current):** Stellar Horizon Testnet Integration & Point Calculation Logic.
+- [ ] **Phase 3:** Kinde Auth full JWT claim validation & Role-Based Access Control (RBAC).
+- [ ] **Phase 4:** Mainnet Deployment & Smart Contract / Soroban Exploration for Automated Reward Distribution.
+- [ ] **Phase 5:** Mobile Web App integration for real-time scanning & intake logs.
 
 
 ## ✉️ Contact & Support
