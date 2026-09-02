@@ -85,6 +85,47 @@ docker-entrypoint.sh       Runs `alembic upgrade head`, then uvicorn
 docker-compose.yml         postgres + api services
 ```
 
+## API Endpoints Overview
+
+### Example Payload: Record Waste Event (`POST /api/v1/waste-events`)
+
+**Request Body:**
+json
+{
+"officer_id": 1,
+"waste_type": "recyclable_plastic",
+"weight_grams": 500
+}
+
+**Response (201 Created):**
+json
+{
+"id": 12,
+"officer_id": 1,
+"waste_type": "recyclable_plastic",
+"weight_grams": 500,
+"points_awarded": 150,
+"created_at": "2026-09-02T15:30:00Z"
+}
+
+
+| Method | Path                                    | Description |
+| ------ | --------------------------------------- | ----------- |
+| GET    | `/health`                               | Liveness — does not touch the database |
+| GET    | `/api/v1/health`                        | Liveness (versioned) |
+| GET    | `/api/v1/health/db`                     | Readiness — `SELECT 1`, returns 503 if the DB is down |
+| GET    | `/api/v1/officers`                      | List officers |
+| POST   | `/api/v1/officers`                      | Create an officer |
+| GET    | `/api/v1/officers/{id}`                 | Get one officer |
+| GET    | `/api/v1/waste-events`                  | List waste events |
+| POST   | `/api/v1/waste-events`                  | Record a waste event, assigns points |
+| GET    | `/api/v1/rewards`                       | List rewards |
+| POST   | `/api/v1/rewards`                       | Create a reward |
+| GET    | `/api/v1/stellar/transactions/{id}`     | Get a stored Stellar transaction |
+| POST   | `/api/v1/stellar/validate?hash=...`     | Validate a hash against Horizon Testnet |
+
+Interactive docs: http://localhost:8000/docs
+
 ---
 
 ## Tech stack
@@ -359,48 +400,7 @@ Points are awarded per full 100 g, weighted by category
 
 ---
 
-## API endpoints
 
-### Example Payload: Record Waste Event (`POST /api/v1/waste-events`)
-
-**Request Body:**
-json
-{
-"officer_id": 1,
-"waste_type": "recyclable_plastic",
-"weight_grams": 500
-}
-
-**Response (201 Created):**
-json
-{
-"id": 12,
-"officer_id": 1,
-"waste_type": "recyclable_plastic",
-"weight_grams": 500,
-"points_awarded": 150,
-"created_at": "2026-09-02T15:30:00Z"
-}
-
-
-| Method | Path                                    | Description |
-| ------ | --------------------------------------- | ----------- |
-| GET    | `/health`                               | Liveness — does not touch the database |
-| GET    | `/api/v1/health`                        | Liveness (versioned) |
-| GET    | `/api/v1/health/db`                     | Readiness — `SELECT 1`, returns 503 if the DB is down |
-| GET    | `/api/v1/officers`                      | List officers |
-| POST   | `/api/v1/officers`                      | Create an officer |
-| GET    | `/api/v1/officers/{id}`                 | Get one officer |
-| GET    | `/api/v1/waste-events`                  | List waste events |
-| POST   | `/api/v1/waste-events`                  | Record a waste event, assigns points |
-| GET    | `/api/v1/rewards`                       | List rewards |
-| POST   | `/api/v1/rewards`                       | Create a reward |
-| GET    | `/api/v1/stellar/transactions/{id}`     | Get a stored Stellar transaction |
-| POST   | `/api/v1/stellar/validate?hash=...`     | Validate a hash against Horizon Testnet |
-
-Interactive docs: http://localhost:8000/docs
-
----
 
 ## Authentication (Kinde)
 
