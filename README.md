@@ -14,6 +14,14 @@ The frontend (React + Tailwind) lives in a separate repository.
 **Built with:** Python | FastAPI | PostgreSQL | Docker | Stellar SDK
 ---
 
+
+## 🎯 Mission & Impact
+Solid waste disposal remains a critical challenge in local communities. **JuanaBin PH** bridges environmental action and decentralized technology by:
+- **Incentivizing Proper Disposal:** Converting weighed waste intake into measurable reward points.
+- **Blockchain Transparency:** Anchoring rewards and transactions directly onto the **Stellar Horizon Testnet** for auditable and tamper-proof tracking.
+- **Community Empowerment:** Supporting field officers and local households in building eco-friendly habits.
+
+
 ## Architecture
 
 ```
