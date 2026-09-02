@@ -2,7 +2,7 @@
 
   <img src="https://raw.githubusercontent.com/JuanaBin-PH/juanabin-ph-backend/main/assets/juanabin-logo.png" alt="JuanaBin Logo" width="120" />
 
-  # JuanaBin PH — Backend API & IoT Hub
+  # JuanaBin PH
 
   ### **AI-Powered Smart Waste Segregation & Rewards Ecosystem on Stellar**
   *Automating proper waste disposal, incentivizing circular economy, and powering green communities across the Philippines.*
@@ -42,10 +42,11 @@
 * **Official Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
 * **Frontend Repository:** React + Tailwind Application (connected via REST API)
 
-### Why JuanaBin? (Impact & Feasibility Data)
-* **LGU Cost Reduction:** A single LGU like Pasig City generates ~23,959 tons of garbage yearly. JuanaBin’s automated sorting dramatically reduces contamination and hauling costs, helping save up to **₱59,800/day** per collection network.
-* **Circular Economy:** Automated segregation channels PET plastics and recyclables directly into upcycled products (furniture, eco-bricks).
-* **Gamification & Micro-Incentives:** Users earn points for correct disposal which can be converted to convenience store credits, digital cash, or anchored on the Stellar Horizon Testnet.
+> [!NOTE]
+> ### 💡 Why JuanaBin? (Impact & Feasibility Data)
+> * **LGU Cost Reduction:** A single LGU like Pasig City generates ~23,959 tons of garbage yearly. JuanaBin’s automated sorting dramatically reduces contamination and hauling costs, helping save up to **₱59,800/day** per collection network.
+> * **Circular Economy:** Automated segregation channels PET plastics and recyclables directly into upcycled products (furniture, eco-bricks).
+> * **Gamification & Micro-Incentives:** Users earn points for correct disposal which can be converted to convenience store credits, digital cash, or anchored on the Stellar Horizon Testnet.
 
 ---
 
@@ -91,7 +92,7 @@
                                   +-----------------------+
 ```
 
-### Modular Layer Structure
+### Layer Structure
 ```
 Route (app/api/v1) ---> Service (app/services) ---> Repository (app/repositories) ---> SQLAlchemy 2.x ORM
 ```
@@ -128,9 +129,9 @@ docker-compose.yml         PostgreSQL + FastAPI services setup
 
 ---
 
-## 📖 API Documentation Overview
+## 📖 API Documentation & Endpoint Overview
 
-> 💡 **Interactive Swagger UI:** Available locally at [http://localhost:8000/docs](http://localhost:8000/docs) (or port `8001` when running FastAPI natively).
+> 💡 **Interactive Swagger UI Documentation:** Available locally at [http://localhost:8000/docs](http://localhost:8000/docs) (or port `8001` when running FastAPI natively).
 
 | Method | Endpoint | Description | Auth / Role |
 | :--- | :--- | :--- | :--- |
@@ -240,4 +241,4 @@ pytest
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
