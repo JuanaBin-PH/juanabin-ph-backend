@@ -18,6 +18,13 @@
 ---
 
 ## ✨ Key Features
+- **Segregate-to-Earn Rewards:** Automated point calculation based on material type (`biodegradable`, `recyclable_paper`, `recyclable_plastic`).
+- **Stellar Horizon Integration:** Directly provisions testnet wallets and dispatches reward payouts on-chain.
+- **Kinde Authentication:** Secure identity-first authentication mapped directly to Stellar wallet addresses.
+
+---
+
+## ✨ Key Features
 - **Segregate-to-Earn Reward Engine:** Automated point calculation based on material type (`biodegradable`, `recyclable_paper`, `recyclable_plastic`).
 - **Stellar Blockchain Anchoring:** Directly provisions testnet wallets and dispatches reward payouts on the Stellar Testnet.
 - **Kinde Authentication:** Identity-first authentication mapping users directly to Stellar wallet addresses.
