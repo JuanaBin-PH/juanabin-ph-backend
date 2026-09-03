@@ -46,7 +46,7 @@ Municipal solid waste management in Philippine LGUs and urban communities faces 
 
 ## 🌐 Official Links & Platform Overview
 
-* **Official Website:** [https://juliesoriano2026.wixsite.com/juanabin-ph](https://juliesoriano2026.wixsite.com/juanabin-ph)
+* **Official Website:** [https://juanabin-landing-page.vercel.app/](https://juanabin-landing-page.vercel.app/)
 * **Frontend Repository:** Available in a separate repository *(React + Tailwind)*.
 * **Backend Repository:** FastAPI + PostgreSQL + Stellar SDK *(Current Repository)*.
 
