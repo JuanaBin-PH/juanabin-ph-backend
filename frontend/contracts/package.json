@@ -1,0 +1,28 @@
+{
+  "name": "juanabin-stellar-contracts",
+  "version": "1.0.0",
+  "description": "JuanaBin PH - Stellar Smart Contracts for Waste Management Rewards",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "node deployContract.js",
+    "record": "node recordWasteDisposal.js",
+    "redeem": "node redeemRewards.js",
+    "carbon": "node carbonTracking.js"
+  },
+  "keywords": [
+    "stellar",
+    "blockchain",
+    "waste-management",
+    "rewards",
+    "sustainability"
+  ],
+  "author": "Julie Ann Soriano <juanabinph@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

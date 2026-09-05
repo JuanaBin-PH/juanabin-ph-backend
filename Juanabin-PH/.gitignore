@@ -1,0 +1,80 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+
+# Stellar keypairs — never commit issuer or distributor secret seeds
+*.seed
+issuer_secret*
+distributor_secret*
+keypairs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next/
+out/
+.cache/
+
+# Databases / local data
+*.db
+*.sqlite
+*.sqlite3
+data/local/
+
+# Logs
+logs/
+*.log
+
+# Build / export artifacts
+*.csv.tmp
+exports/
+reports/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
