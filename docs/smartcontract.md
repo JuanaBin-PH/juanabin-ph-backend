@@ -2,7 +2,7 @@
 
 ## Overview
 
-JuanaBin uses Stellar blockchain to create a transparent, immutable, and verifiable reward system for waste segregation. This document outlines the smart contract architecture inspired by Velo Protocol's approach but customized for waste management incentives.
+JuanaBin uses Stellar blockchain to create a transparent, immutable, and verifiable reward system for waste segregation. This document outlines the smart contract architecture designed specifically for JuanaBin's waste management incentive system.
 
 ---
 
@@ -10,14 +10,15 @@ JuanaBin uses Stellar blockchain to create a transparent, immutable, and verifia
 
 ### 1. **JBIN Token (Reward Points Token)**
 
-The JBIN token represents reward points earned through proper waste segregation.
+The JBIN token is JuanaBin's proprietary reward points system, specifically designed for waste segregation incentives in the Philippines.
 
 **Token Properties:**
 - **Asset Code**: `JBIN`
 - **Issuer Account**: `GDJUANABIN...` (JuanaBin Issuer Account)
-- **Type**: Custom Stellar Asset
+- **Type**: Custom Stellar Asset (Native to JuanaBin PH)
 - **Decimals**: 2 (supports fractional points like 10.50 JBIN)
-- **Supply**: Controlled by issuer (mints on-demand for verified waste disposal)
+- **Supply**: Controlled by JuanaBin issuer (mints on-demand for verified waste disposal)
+- **Purpose**: Exclusive reward currency for JuanaBin waste management system
 
 **Conversion Rate:**
 - 10 JBIN = ₱1.00 PHP equivalent
@@ -29,7 +30,7 @@ The JBIN token represents reward points earned through proper waste segregation.
 
 ### 2. **Waste Disposal Verification Contract**
 
-Records and verifies waste disposal transactions on Stellar blockchain.
+JuanaBin's proprietary system for recording and verifying waste disposal transactions on Stellar blockchain.
 
 #### **Function: `recordWasteDisposal`**
 
@@ -50,11 +51,11 @@ Records and verifies waste disposal transactions on Stellar blockchain.
 ```
 
 **Smart Contract Logic:**
-1. **Verify AI Detection**: Confirm waste type matches bin category
-2. **Calculate Points**: Apply reward schedule (10 pts per clear PET bottle)
+1. **Verify AI Detection**: Confirm waste type matches bin category (JuanaBin's AI system)
+2. **Calculate Points**: Apply JuanaBin reward schedule (10 pts per clear PET bottle)
 3. **Mint JBIN Tokens**: Issue tokens to user's Stellar account
 4. **Record Transaction**: Store immutable record on Stellar ledger
-5. **Update Carbon Footprint**: Calculate CO₂ saved (0.04 kg per bottle)
+5. **Update Carbon Footprint**: Calculate CO₂ saved based on JuanaBin's environmental data (0.04 kg per bottle)
 
 **Stellar Operations:**
 ```javascript
@@ -97,7 +98,7 @@ const transaction = new StellarSdk.TransactionBuilder(sourceAccount, {
 
 ### 3. **Reward Redemption Contract**
 
-Handles conversion of JBIN tokens to PHP value at partner stores.
+JuanaBin's system for converting JBIN tokens to PHP value at partner stores.
 
 #### **Function: `redeemRewards`**
 
@@ -162,7 +163,7 @@ const transaction = new StellarSdk.TransactionBuilder(userAccount, {
 
 ### 4. **Carbon Footprint Tracking Contract**
 
-Tracks environmental impact of waste diversion from landfills.
+JuanaBin's proprietary system for tracking environmental impact of waste diversion from landfills.
 
 #### **Function: `calculateCarbonFootprint`**
 
@@ -229,7 +230,7 @@ const transaction = new StellarSdk.TransactionBuilder(issuerAccount, {
 
 ### 5. **Leaderboard & Gamification Contract**
 
-Manages community rankings and achievements.
+JuanaBin's community engagement system for managing rankings and achievements.
 
 #### **Function: `updateLeaderboard`**
 
@@ -248,10 +249,10 @@ Manages community rankings and achievements.
 4. Emit achievement badges (NFTs on Stellar)
 
 **Achievement Badges (Stellar NFTs):**
-- 🏆 **100 Points Club** - Earned 100+ JBIN
-- 🌍 **Carbon Hero** - Saved 10+ kg CO₂
-- 🔥 **30-Day Streak** - 30 consecutive days of proper segregation
-- ⭐ **Champion Segregator** - Top 10 in monthly leaderboard
+- 🏆 **100 Points Club** - Earned 100+ JBIN (JuanaBin milestone)
+- 🌍 **Carbon Hero** - Saved 10+ kg CO₂ (JuanaBin environmental champion)
+- 🔥 **30-Day Streak** - 30 consecutive days using JuanaBin bins
+- ⭐ **Champion Segregator** - Top 10 in JuanaBin monthly leaderboard
 
 ---
 
@@ -330,24 +331,26 @@ const jbinAsset = new StellarSdk.Asset('JBIN', issuerPublicKey);
 
 ## Security Measures
 
+JuanaBin implements industry-standard blockchain security practices:
+
 ### 1. **Multi-Signature Authorization**
-- Requires 2-of-3 signatures for large token mints
-- Issuer + Distribution + Backup accounts
+- Requires 2-of-3 signatures for large JBIN token mints
+- JuanaBin Issuer + Distribution + Backup accounts
 
 ### 2. **Rate Limiting**
 - Maximum 100 JBIN per user per day
-- Prevents abuse and fraud
+- Prevents abuse and fraud in JuanaBin system
 
 ### 3. **AI Verification Required**
-- All waste disposals must pass AI detection
-- Manual override requires admin approval
+- All waste disposals must pass JuanaBin AI detection
+- Manual override requires JuanaBin admin approval
 
 ### 4. **Clawback Enabled**
-- Fraudulent transactions can be reversed
+- Fraudulent transactions can be reversed by JuanaBin
 - Clawback window: 24 hours
 
 ### 5. **Audit Trail**
-- All transactions permanently recorded on Stellar
+- All JuanaBin transactions permanently recorded on Stellar
 - Publicly verifiable on blockchain explorer
 
 ---
