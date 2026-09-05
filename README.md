@@ -157,6 +157,13 @@ docker-compose.yml         postgres + api services
   "created_at": "2026-09-02T15:30:00Z"
 }
 ```
+## 🔗 Current Testnet Accounts & Contracts
+
+| Contract / Account | Address | Explorer |
+| :--- | :--- | :--- |
+| `JuanaBin Ledger Wallet` | `GAY5FKBU5LXXH2AY4XUXYMDUL6Y5GEM2CM3ISKV6AT6MFOOZN2OWNKZQ` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/account/GAY5FKBU5LXXH2AY4XUXYMDUL6Y5GEM2CM3ISKV6AT6MFOOZN2OWNKZQ) |
+
+These are alpha Testnet deployments and may be replaced as JuanaBin PH evolves. After a redeployment or account migration, update this table, the application environment, and the service configurations together.
 
 ---
 
